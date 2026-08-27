@@ -1,0 +1,79 @@
+{
+  "total_master_duration": 29.659999999999997,
+  "total_frames": 356,
+  "fps": 12,
+  "total_mb": 4.54,
+  "avg_kb": 13.1,
+  "chapters": [
+    {
+      "index": 1,
+      "title": "THE CANVAS",
+      "start_sec": 0.0,
+      "end_sec": 4.01,
+      "start_frac": 0.0,
+      "end_frac": 0.1352,
+      "start_pct": "0.0%",
+      "end_pct": "13.5%"
+    },
+    {
+      "index": 2,
+      "title": "THE RITUAL",
+      "start_sec": 3.61,
+      "end_sec": 7.62,
+      "start_frac": 0.1217,
+      "end_frac": 0.2569,
+      "start_pct": "12.2%",
+      "end_pct": "25.7%"
+    },
+    {
+      "index": 3,
+      "title": "FIRST LINE",
+      "start_sec": 7.22,
+      "end_sec": 11.23,
+      "start_frac": 0.2434,
+      "end_frac": 0.3786,
+      "start_pct": "24.3%",
+      "end_pct": "37.9%"
+    },
+    {
+      "index": 4,
+      "title": "SHADING MAGIC",
+      "start_sec": 10.83,
+      "end_sec": 18.83,
+      "start_frac": 0.3651,
+      "end_frac": 0.6349,
+      "start_pct": "36.5%",
+      "end_pct": "63.5%"
+    },
+    {
+      "index": 5,
+      "title": "TRIBAL FIRE",
+      "start_sec": 18.43,
+      "end_sec": 22.439999999999998,
+      "start_frac": 0.6214,
+      "end_frac": 0.7566,
+      "start_pct": "62.1%",
+      "end_pct": "75.7%"
+    },
+    {
+      "index": 6,
+      "title": "THE MASTERPIECE",
+      "start_sec": 22.04,
+      "end_sec": 26.049999999999997,
+      "start_frac": 0.7431,
+      "end_frac": 0.8783,
+      "start_pct": "74.3%",
+      "end_pct": "87.8%"
+    },
+    {
+      "index": 7,
+      "title": "VISHAL KUMAR TATTOOS",
+      "start_sec": 25.65,
+      "end_sec": 29.659999999999997,
+      "start_frac": 0.8648,
+      "end_frac": 1.0,
+      "start_pct": "86.5%",
+      "end_pct": "100.0%"
+    }
+  ]
+}
