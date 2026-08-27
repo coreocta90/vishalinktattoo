@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MagneticButton } from '../components/MagneticButton';
+import { InkSplatterSvg } from '../components/InkSplatterSvg';
 
 export const NotFound: React.FC = () => {
   return (
@@ -10,9 +11,14 @@ export const NotFound: React.FC = () => {
       {/* Background Radial Glow */}
       <div className="absolute inset-0 gold-radial-bg pointer-events-none" />
 
-      {/* Giant Ghost Text */}
+      {/* Animated Ink Splatter SVG Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <InkSplatterSvg className="w-[500px] h-[500px]" />
+      </div>
+
+      {/* Giant Ghost Text 404 */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5 overflow-hidden">
-        <span className="font-display text-[25vw] leading-none text-white whitespace-nowrap">
+        <span className="font-display text-[28vw] leading-none text-white whitespace-nowrap">
           404
         </span>
       </div>
@@ -31,8 +37,8 @@ export const NotFound: React.FC = () => {
           LOST IN <span className="text-[#D4AF37]">INK</span>
         </h1>
 
-        <p className="font-sans text-sm sm:text-base text-white/60 max-w-md mx-auto leading-relaxed">
-          The artwork or section you are looking for has been moved or doesn't exist.
+        <p className="font-sans text-base sm:text-xl text-white/70 max-w-md mx-auto leading-relaxed font-light">
+          This page doesn't exist, but your next tattoo should.
         </p>
 
         <div className="pt-6">

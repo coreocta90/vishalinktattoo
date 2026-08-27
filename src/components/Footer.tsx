@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, MapPin, Phone, Check, Copy } from 'lucide-react';
 import { TrustMarquee } from './TrustMarquee';
+import { FooterClock } from './FooterClock';
 
 export const Footer: React.FC = () => {
   const [copiedUpi, setCopiedUpi] = useState(false);
@@ -29,6 +30,14 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         
+        {/* Real-time IST Dhanbad Clock */}
+        <div className="mb-8 flex items-center justify-between flex-wrap gap-4 border-b border-white/10 pb-6">
+          <FooterClock />
+          <div className="text-xs text-white/50 font-mono">
+            STUDIO OPEN: 11:00 AM – 9:00 PM IST
+          </div>
+        </div>
+
         {/* Top Feature Bar: UPI Deposit & Coupon Pill */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 pb-12 border-b border-white/10">
           

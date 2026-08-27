@@ -11,6 +11,7 @@ import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SweepTransition } from './components/SweepTransition';
 import { CursorParticles } from './components/CursorParticles';
+import { KonamiCode } from './components/KonamiCode';
 
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -50,33 +51,36 @@ const Layout: React.FC = () => {
         {/* 1. Global Custom Gold Cursor */}
         <CustomCursor />
 
+        {/* 2. Easter Egg Konami Code Listener */}
+        <KonamiCode />
+
         {/* 13. Desktop Gold Cursor Particle Trail */}
         <CursorParticles />
 
-        {/* 2. Session Preloader */}
+        {/* 3. Session Preloader */}
         <Preloader />
 
-        {/* 3. Scroll Progress Bar */}
+        {/* 4. Scroll Progress Bar */}
         <ScrollProgressBar />
 
-        {/* 4. Floating WhatsApp Button */}
+        {/* 5. Floating WhatsApp Button */}
         <WhatsAppFloat />
 
-        {/* 5. Scroll to Top Helper */}
+        {/* 6. Scroll to Top Helper */}
         <ScrollToTop />
 
-        {/* 6. SVG Grain Overlay Texture */}
+        {/* 7. SVG Grain Overlay Texture */}
         <GrainOverlay />
 
-        {/* 7. Global Navbar */}
+        {/* 8. Global Navbar */}
         <Navbar />
 
-        {/* 8. Animated Page View with Gold Sweep Transition */}
+        {/* 9. Animated Page View with Gold Sweep Transition */}
         <main className="flex-grow">
           <AnimatedRoutes />
         </main>
 
-        {/* 9. Global Footer */}
+        {/* 10. Global Footer */}
         <Footer />
       </div>
     </LenisProvider>
