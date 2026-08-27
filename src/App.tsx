@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 import { LenisProvider } from './components/LenisProvider';
 import { GrainOverlay } from './components/GrainOverlay';
@@ -9,6 +9,7 @@ import { Preloader } from './components/Preloader';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { ScrollToTop } from './components/ScrollToTop';
+import { SweepTransition } from './components/SweepTransition';
 
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -26,13 +27,7 @@ const AnimatedRoutes: React.FC = () => {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -15 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
-      >
+      <SweepTransition key={location.pathname}>
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
@@ -42,7 +37,7 @@ const AnimatedRoutes: React.FC = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </motion.div>
+      </SweepTransition>
     </AnimatePresence>
   );
 };
@@ -72,7 +67,7 @@ const Layout: React.FC = () => {
         {/* 7. Global Navbar */}
         <Navbar />
 
-        {/* 8. Animated Page View */}
+        {/* 8. Animated Page View with Gold Sweep Transition */}
         <main className="flex-grow">
           <AnimatedRoutes />
         </main>

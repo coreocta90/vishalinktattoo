@@ -3,11 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LiveStudioStatus } from './LiveStudioStatus';
+import { NavHoverPreview } from './NavHoverPreview';
+import { MagneticButton } from './MagneticButton';
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
 
   const navLinks = [
     { name: 'HOME', path: '/' },
@@ -35,6 +38,9 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
+      {/* Nav Hover Floating Image Preview */}
+      <NavHoverPreview activeHoverPath={hoveredPath} />
+
       {/* 1. DESKTOP FULL HORIZONTAL NAVBAR (min-width: 1024px / lg) */}
       <motion.header
         initial={{ opacity: 0 }}
@@ -50,7 +56,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center space-x-6 pointer-events-auto">
           <Link
             to="/"
-            className="font-display text-[1.25rem] tracking-[0.05em] uppercase text-white hover:opacity-90 transition-opacity"
+            className="font-display text-[1.25rem] tracking-[0.05em] uppercase text-[#F5F5F0] hover:opacity-90 transition-opacity"
           >
             <span className="text-[#D4AF37]">VISHAL</span> KUMAR TATTOOS
           </Link>
@@ -67,6 +73,8 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={link.path}
                   to={link.path}
+                  onMouseEnter={() => setHoveredPath(link.path)}
+                  onMouseLeave={() => setHoveredPath(null)}
                   className={`font-sans text-[0.8rem] font-semibold uppercase tracking-[0.18em] transition-colors duration-200 pointer-events-auto ${
                     isActive ? 'text-[#D4AF37]' : 'text-white/70 hover:text-[#D4AF37]'
                   }`}
@@ -77,12 +85,14 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          <Link
-            to="/contact"
-            className="font-sans text-xs font-semibold uppercase tracking-[0.1em] px-6 py-2.5 border border-[#D4AF37] text-[#D4AF37] rounded-md hover:bg-[#D4AF37] hover:text-[#050508] transition-all duration-300 pointer-events-auto shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)]"
-          >
-            BOOK NOW
-          </Link>
+          <MagneticButton>
+            <Link
+              to="/contact"
+              className="font-sans text-xs font-semibold uppercase tracking-[0.1em] px-6 py-2.5 border border-[#D4AF37] text-[#D4AF37] rounded-md hover:bg-[#D4AF37] hover:text-[#050508] transition-all duration-300 pointer-events-auto shadow-[0_0_15px_rgba(212,175,55,0.2)]"
+            >
+              BOOK NOW
+            </Link>
+          </MagneticButton>
         </div>
       </motion.header>
 
@@ -117,7 +127,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   to="/"
                   onClick={() => setIsMenuOpen(false)}
-                  className="font-display text-2xl tracking-wider text-white block"
+                  className="font-display text-2xl tracking-wider text-[#F5F5F0] block"
                 >
                   <span className="text-[#D4AF37]">VISHAL</span> KUMAR TATTOOS
                 </Link>

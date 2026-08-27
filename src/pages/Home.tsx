@@ -8,9 +8,13 @@ import { HygieneSection } from '../components/HygieneSection';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { InkStyleQuiz } from '../components/InkStyleQuiz';
 import { StudioTour } from '../components/StudioTour';
-import { ServiceRowList } from '../components/ServiceRowList';
 import { LineMaskReveal } from '../components/LineMaskReveal';
 import { MagneticButton } from '../components/MagneticButton';
+import { TattooNeedleDivider } from '../components/TattooNeedleDivider';
+import { HiddenInkSection } from '../components/HiddenInkSection';
+import { PinnedHorizontalPortfolio } from '../components/PinnedHorizontalPortfolio';
+import { StackedCraftCards } from '../components/StackedCraftCards';
+import { TextScramble } from '../components/TextScramble';
 
 const TOTAL_FRAMES = 356;
 const FRAME_PREFIX = '/frames/frame_';
@@ -261,15 +265,6 @@ export const Home: React.FC = () => {
 
   const loaderPct = Math.min(100, Math.floor((loadedCount / totalToLoadCount) * 100));
 
-  const featuredWorks = [
-    { title: 'LION PORTRAIT', style: 'Black & Grey Realism', image: '/stills/bonus_01.webp', offset: false },
-    { title: 'FINE LINE PRECISION', style: 'Realism Detail', image: '/stills/bonus_02.webp', offset: true },
-    { title: 'MICRO SHADING DEPTH', style: 'Black & Grey', image: '/frames/frame_0180.webp', offset: false },
-    { title: 'POLYNESIAN GEOMETRY', style: 'Tribal Pattern', image: '/frames/frame_0240.webp', offset: true },
-    { title: 'SCRIPT CALLIGRAPHY', style: 'Custom Lettering', image: '/frames/frame_0300.webp', offset: false },
-    { title: 'PHOENIX REVEAL', style: 'Cover-Up Artwork', image: '/frames/frame_0350.webp', offset: true }
-  ];
-
   const testimonials = [
     { quote: "Vishal bhai ne meri tattoo itni perfectly banai ki main shabd nahi dhundh pa raha. Best artist in Jharkhand!", name: "Rahul M.", city: "Dhanbad" },
     { quote: "Amazing attention to detail. My black and grey portrait looks absolutely real.", name: "Priya S.", city: "Ranchi" },
@@ -397,9 +392,8 @@ export const Home: React.FC = () => {
         <MarqueeStrip />
       </div>
 
-      {/* SECTION 1 — MANIFESTO WITH GIANT GHOST WORD "INK" */}
+      {/* SECTION 1 — MANIFESTO */}
       <section className="relative z-20 bg-[#050508] py-24 sm:py-36 overflow-hidden">
-        {/* Giant Ghost Text "INK" */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
           <span className="font-display text-[25vw] leading-none text-white uppercase tracking-tighter">
             INK
@@ -408,7 +402,7 @@ export const Home: React.FC = () => {
 
         <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
           <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] inline-block mb-6">
-            01 / MANIFESTO
+            <TextScramble text="01 / MANIFESTO" />
           </span>
           
           <LineMaskReveal
@@ -424,6 +418,9 @@ export const Home: React.FC = () => {
           </p>
         </div>
       </section>
+
+      {/* NEEDLE DRAW DIVIDER 1 */}
+      <TattooNeedleDivider className="relative z-20" />
 
       {/* SECTION 2 — STATS STRIP */}
       <section className="relative z-20 bg-[#0a0a12] py-16 border-y border-[#D4AF37]/15">
@@ -462,12 +459,17 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* FLASHLIGHT HIDDEN INK SPOTLIGHT SECTION */}
+      <HiddenInkSection />
+
       {/* INK STYLE QUIZ */}
       <InkStyleQuiz />
 
-      {/* SECTION 3 — CRAFT PREVIEW WITH LINEAR.APP STYLE ROWS */}
+      {/* NEEDLE DRAW DIVIDER 2 */}
+      <TattooNeedleDivider className="relative z-20" />
+
+      {/* SECTION 3 — STACKED CRAFT CARDS */}
       <section className="relative z-20 bg-[#050508] py-24 sm:py-36 overflow-hidden">
-        {/* Giant Ghost Text "CRAFT" */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
           <span className="font-display text-[22vw] leading-none text-white uppercase tracking-tighter">
             CRAFT
@@ -479,7 +481,7 @@ export const Home: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
               <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] mb-2 block">
-                02 / DISCIPLINES
+                <TextScramble text="02 / DISCIPLINES" />
               </span>
               <h2 className="font-display text-4xl sm:text-6xl text-[#F5F5F0] tracking-wide uppercase">
                 THE CRAFT
@@ -495,7 +497,7 @@ export const Home: React.FC = () => {
             </Link>
           </div>
 
-          <ServiceRowList />
+          <StackedCraftCards />
 
         </div>
       </section>
@@ -506,73 +508,26 @@ export const Home: React.FC = () => {
       {/* STUDIO TOUR */}
       <StudioTour />
 
-      {/* SECTION 4 — FEATURED WORK & BEFORE/AFTER COVER-UP SLIDER */}
-      <section className="relative z-20 bg-[#050508] py-24 sm:py-36 border-t border-white/5">
+      {/* PINNED HORIZONTAL SCROLL GALLERY (DESKTOP) */}
+      <PinnedHorizontalPortfolio />
+
+      {/* BEFORE/AFTER COVER-UP SLIDER */}
+      <section className="relative z-20 bg-[#050508] py-20 border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6">
-          
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
-            <div>
-              <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] mb-2 block">
-                03 / GALLERY TEASER
-              </span>
-              <h2 className="font-display text-4xl sm:text-6xl text-[#F5F5F0] tracking-wide uppercase">
-                FEATURED WORK
-              </h2>
-            </div>
-
-            <Link
-              to="/portfolio"
-              className="font-sans text-xs font-bold text-[#D4AF37] uppercase tracking-[0.18em] hover:text-white transition-colors flex items-center space-x-1"
-            >
-              <span>FULL PORTFOLIO</span>
-              <ArrowRight size={14} />
-            </Link>
+          <div className="text-center mb-8">
+            <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] block mb-2">
+              <TextScramble text="04 / COVER-UP SPOTLIGHT" />
+            </span>
+            <h2 className="font-display text-3xl sm:text-5xl text-[#F5F5F0] uppercase">
+              TRANSFORMATION SHOWCASE
+            </h2>
           </div>
-
-          <div className="mb-16">
-            <BeforeAfterSlider />
-          </div>
-
-          {/* Staggered Masonry Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredWorks.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`group relative rounded-[12px] overflow-hidden bg-[#0a0a12] border border-[#D4AF37]/15 hover:border-[#D4AF37] hover:scale-[1.03] transition-all duration-500 shadow-xl ${
-                  item.offset ? 'lg:translate-y-8' : ''
-                }`}
-              >
-                <div className="aspect-[3/4] overflow-hidden relative">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out filter contrast-[1.05]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-transparent to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
-                  
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <span className="text-[#D4AF37] font-sans text-[10px] font-bold uppercase tracking-widest block mb-1">
-                      {item.style}
-                    </span>
-                    <h3 className="font-display text-xl text-[#F5F5F0] uppercase tracking-wide">
-                      {item.title}
-                    </h3>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
+          <BeforeAfterSlider />
         </div>
       </section>
 
-      {/* SECTION 5 — CLIENT VOICES WITH GIANT GHOST WORD "STORY" */}
+      {/* SECTION 5 — CLIENT VOICES */}
       <section className="relative z-20 bg-[#0a0a12] py-24 sm:py-36 border-y border-[#D4AF37]/15 overflow-hidden">
-        {/* Giant Ghost Text "STORY" */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
           <span className="font-display text-[22vw] leading-none text-white uppercase tracking-tighter">
             STORY
@@ -583,14 +538,13 @@ export const Home: React.FC = () => {
           
           <div className="mb-12">
             <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] mb-2 block">
-              04 / TESTIMONIALS
+              <TextScramble text="05 / TESTIMONIALS" />
             </span>
             <h2 className="font-display text-4xl sm:text-6xl text-[#F5F5F0] tracking-wide uppercase">
               CLIENT VOICES
             </h2>
           </div>
 
-          {/* Featured Large Quote */}
           <div className="bg-white/[0.03] border border-[#D4AF37]/30 rounded-2xl p-8 sm:p-12 mb-12 relative overflow-hidden">
             <Quote size={48} className="text-[#D4AF37] mb-4 opacity-80" />
             <p className="font-sans text-lg sm:text-2xl text-[#F5F5F0] italic leading-relaxed font-light mb-6">
@@ -603,7 +557,6 @@ export const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* Carousel Row */}
           <div className="flex space-x-6 overflow-x-auto pb-6 pt-2 no-scrollbar snap-x snap-mandatory">
             {testimonials.slice(1).map((t, idx) => (
               <motion.div
@@ -631,6 +584,9 @@ export const Home: React.FC = () => {
 
         </div>
       </section>
+
+      {/* NEEDLE DRAW DIVIDER 3 */}
+      <TattooNeedleDivider className="relative z-20" />
 
       {/* SECTION 6 — ARTIST TEASER */}
       <section className="relative z-20 bg-[#050508] py-24 sm:py-36">
@@ -662,7 +618,7 @@ export const Home: React.FC = () => {
               className="lg:col-span-7 space-y-6"
             >
               <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] block">
-                05 / THE ARTIST
+                <TextScramble text="06 / THE ARTIST" />
               </span>
 
               <h2 className="font-display text-4xl sm:text-7xl text-[#F5F5F0] tracking-tight uppercase leading-none">
