@@ -47,7 +47,7 @@ const AnimatedRoutes: React.FC = () => {
 const Layout: React.FC = () => {
   return (
     <LenisProvider>
-      <div className="relative min-h-screen bg-[#050508] text-[#F5F5F0] flex flex-col justify-between overflow-x-hidden">
+      <div className="relative min-h-screen bg-[#050508] text-[#F5F5F0] flex flex-col justify-between overflow-x-clip">
         {/* 1. Global Custom Gold Cursor */}
         <CustomCursor />
 

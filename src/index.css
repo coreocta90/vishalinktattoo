@@ -25,7 +25,7 @@
     background-color: #050508;
     color: #F5F5F0;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    overflow-x: hidden;
+    overflow-x: clip;
     transition: background-color 0.8s ease;
   }
 
