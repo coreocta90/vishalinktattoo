@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Play, MapPin } from 'lucide-react';
+import { StudioMapEmbed } from './StudioMapEmbed';
 
 export const StudioTour: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -40,7 +41,7 @@ export const StudioTour: React.FC = () => {
           viewport={{ once: true }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden border-2 border-[#D4AF37]/30 shadow-[0_0_50px_rgba(212,175,55,0.2)] group cursor-pointer"
+          className="relative max-w-4xl mx-auto rounded-2xl overflow-hidden border-2 border-[#D4AF37]/30 shadow-[0_0_50px_rgba(212,175,55,0.2)] group cursor-pointer mb-16"
         >
           <div className="aspect-[16/9] bg-[#0a0a12] relative overflow-hidden">
             <video
@@ -75,7 +76,7 @@ export const StudioTour: React.FC = () => {
             </div>
 
             <a
-              href="https://maps.google.com/?q=Steel+Gate+near+Baba+Sweets+Dhanbad"
+              href="https://www.google.com/maps/dir/?api=1&destination=Steel+Gate,+near+Baba+Sweets,+Dhanbad"
               target="_blank"
               rel="noreferrer"
               className="px-6 py-3 bg-[#D4AF37] text-[#050508] font-bold text-xs tracking-widest uppercase rounded-lg hover:bg-[#e0bc43] transition-colors flex items-center space-x-2 shrink-0"
@@ -85,6 +86,9 @@ export const StudioTour: React.FC = () => {
             </a>
           </div>
         </motion.div>
+
+        {/* Studio Location Map Embed Section */}
+        <StudioMapEmbed />
 
       </div>
     </section>
