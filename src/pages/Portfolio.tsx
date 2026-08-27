@@ -267,6 +267,7 @@ export const Portfolio: React.FC = () => {
               >
                 <button
                   onClick={() => setSelectedIndex(null)}
+                  aria-label="Close artwork lightbox"
                   className="absolute top-4 right-4 z-20 p-2.5 bg-black/70 border border-white/20 rounded-full text-white/80 hover:text-white transition-colors"
                 >
                   <X size={20} />

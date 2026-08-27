@@ -63,6 +63,7 @@ export const ScriptPreviewer: React.FC = () => {
           {fontOptions.map((f) => (
             <button
               key={f.id}
+              type="button"
               onClick={() => setSelectedFont(f)}
               className={`p-3 rounded-xl border text-xs font-semibold text-left transition-all ${
                 selectedFont.id === f.id
@@ -102,6 +103,7 @@ export const ScriptPreviewer: React.FC = () => {
 
         {/* WhatsApp Button */}
         <button
+          type="button"
           onClick={handleWhatsApp}
           className="w-full py-4 bg-[#D4AF37] text-[#050508] font-bold text-xs tracking-widest uppercase rounded-xl hover:bg-[#e0bc43] transition-all flex items-center justify-center space-x-2 shadow-[0_0_30px_rgba(212,175,55,0.3)]"
         >
