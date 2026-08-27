@@ -1,20 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Quote, Phone, Calendar, ArrowRight } from 'lucide-react';
+import { Phone, Calendar, ArrowRight } from 'lucide-react';
 import { MarqueeStrip } from '../components/MarqueeStrip';
 import { AnimatedCounter } from '../components/AnimatedCounter';
 import { HygieneSection } from '../components/HygieneSection';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { InkStyleQuiz } from '../components/InkStyleQuiz';
 import { StudioTour } from '../components/StudioTour';
-import { LineMaskReveal } from '../components/LineMaskReveal';
 import { MagneticButton } from '../components/MagneticButton';
 import { TattooNeedleDivider } from '../components/TattooNeedleDivider';
 import { HiddenInkSection } from '../components/HiddenInkSection';
 import { PinnedHorizontalPortfolio } from '../components/PinnedHorizontalPortfolio';
-import { StackedCraftCards } from '../components/StackedCraftCards';
 import { TextScramble } from '../components/TextScramble';
+import { CharByCharHeading } from '../components/CharByCharHeading';
+import { AuroraBlob } from '../components/AuroraBlobs';
+import { SvgMachineDraw } from '../components/SvgMachineDraw';
+import { ExpandingServiceAccordion } from '../components/ExpandingServiceAccordion';
+import { ClipPathImageReveal } from '../components/ClipPathImageReveal';
+import { GlassmorphicTestimonials } from '../components/GlassmorphicTestimonials';
+import { TiltCard } from '../components/TiltCard';
 
 const TOTAL_FRAMES = 356;
 const FRAME_PREFIX = '/frames/frame_';
@@ -265,14 +270,6 @@ export const Home: React.FC = () => {
 
   const loaderPct = Math.min(100, Math.floor((loadedCount / totalToLoadCount) * 100));
 
-  const testimonials = [
-    { quote: "Vishal bhai ne meri tattoo itni perfectly banai ki main shabd nahi dhundh pa raha. Best artist in Jharkhand!", name: "Rahul M.", city: "Dhanbad" },
-    { quote: "Amazing attention to detail. My black and grey portrait looks absolutely real.", name: "Priya S.", city: "Ranchi" },
-    { quote: "The tribal design was exactly what I wanted. Very professional and clean studio.", name: "Amit K.", city: "Bokaro" },
-    { quote: "I was nervous about my first tattoo but Vishal made me feel completely comfortable.", name: "Sneha R.", city: "Dhanbad" },
-    { quote: "Got a cover-up done and you can't even tell there was an old tattoo. Master at his craft!", name: "Vikram P.", city: "Jamshedpur" }
-  ];
-
   return (
     <div className="relative w-full bg-[#050508] text-[#F5F5F0]">
       
@@ -294,9 +291,10 @@ export const Home: React.FC = () => {
         </div>
       )}
 
-      {/* CANVAS VIEWPORT (FIXED) */}
+      {/* CANVAS VIEWPORT (FIXED) WITH ANIMATED NOISE GRADIENT */}
       <div className="fixed top-0 left-0 w-vw h-vh z-1 pointer-events-none flex items-center justify-center overflow-hidden bg-[#050508]">
-        <canvas ref={canvasRef} className="w-full h-full block filter contrast-[1.05] brightness-[0.95]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.03)_0%,rgba(59,130,246,0.02)_50%,transparent_100%)] opacity-70 animate-pulse" />
+        <canvas ref={canvasRef} className="w-full h-full block filter contrast-[1.05] brightness-[0.95] relative z-1" />
         <div className="absolute inset-0 z-2 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(5,5,8,0.25)_30%,rgba(5,5,8,0.75)_80%,#050508_100%)]" />
       </div>
 
@@ -392,28 +390,31 @@ export const Home: React.FC = () => {
         <MarqueeStrip />
       </div>
 
-      {/* SECTION 1 — MANIFESTO */}
+      {/* SECTION 1 — MANIFESTO WITH AURORA BLOB & CHAR-BY-CHAR HEADING */}
       <section className="relative z-20 bg-[#050508] py-24 sm:py-36 overflow-hidden">
+        {/* Aurora Blob 1 */}
+        <AuroraBlob color="gold" size={650} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
           <span className="font-display text-[25vw] leading-none text-white uppercase tracking-tighter">
             INK
           </span>
         </div>
 
-        <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
-          <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] inline-block mb-6">
+        <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10 space-y-6">
+          <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] inline-block">
             <TextScramble text="01 / MANIFESTO" />
           </span>
           
-          <LineMaskReveal
-            lines={['EVERY SKIN TELLS A STORY.', 'WE INK IT FOREVER.']}
+          {/* Character-by-character 3D Rise Reveal Heading */}
+          <CharByCharHeading
+            text="EVERY SKIN TELLS A STORY WE INK IT FOREVER"
+            highlightWord="FOREVER"
             as="h2"
-            className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight leading-none uppercase mb-6"
-            highlightIndex={1}
-            highlightStyle="gold"
+            className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight leading-none uppercase"
           />
 
-          <p className="font-sans text-sm sm:text-base text-white/60 max-w-[600px] mx-auto leading-relaxed font-light">
+          <p className="font-sans text-sm sm:text-base text-white/60 max-w-[600px] mx-auto leading-relaxed font-light pt-2">
             From fine-line scripts to full black & grey realism — every piece at Vishal Kumar Tattoos is designed, sterilized, and inked like a masterpiece.
           </p>
         </div>
@@ -468,13 +469,9 @@ export const Home: React.FC = () => {
       {/* NEEDLE DRAW DIVIDER 2 */}
       <TattooNeedleDivider className="relative z-20" />
 
-      {/* SECTION 3 — STACKED CRAFT CARDS */}
+      {/* SECTION 3 — EXPANDING SERVICE ACCORDION */}
       <section className="relative z-20 bg-[#050508] py-24 sm:py-36 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
-          <span className="font-display text-[22vw] leading-none text-white uppercase tracking-tighter">
-            CRAFT
-          </span>
-        </div>
+        <AuroraBlob color="gold" size={800} className="top-1/4 right-0" />
 
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           
@@ -484,7 +481,7 @@ export const Home: React.FC = () => {
                 <TextScramble text="02 / DISCIPLINES" />
               </span>
               <h2 className="font-display text-4xl sm:text-6xl text-[#F5F5F0] tracking-wide uppercase">
-                THE CRAFT
+                THE CRAFT ACCORDION
               </h2>
             </div>
 
@@ -497,7 +494,7 @@ export const Home: React.FC = () => {
             </Link>
           </div>
 
-          <StackedCraftCards />
+          <ExpandingServiceAccordion />
 
         </div>
       </section>
@@ -508,7 +505,7 @@ export const Home: React.FC = () => {
       {/* STUDIO TOUR */}
       <StudioTour />
 
-      {/* PINNED HORIZONTAL SCROLL GALLERY (DESKTOP) */}
+      {/* 1. PINNED HORIZONTAL SCROLL GALLERY (DESKTOP) */}
       <PinnedHorizontalPortfolio />
 
       {/* BEFORE/AFTER COVER-UP SLIDER */}
@@ -526,14 +523,8 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 5 — CLIENT VOICES */}
+      {/* SECTION 5 — GLASSMORPHIC FLOATING TESTIMONIALS */}
       <section className="relative z-20 bg-[#0a0a12] py-24 sm:py-36 border-y border-[#D4AF37]/15 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
-          <span className="font-display text-[22vw] leading-none text-white uppercase tracking-tighter">
-            STORY
-          </span>
-        </div>
-
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           
           <div className="mb-12">
@@ -541,46 +532,11 @@ export const Home: React.FC = () => {
               <TextScramble text="05 / TESTIMONIALS" />
             </span>
             <h2 className="font-display text-4xl sm:text-6xl text-[#F5F5F0] tracking-wide uppercase">
-              CLIENT VOICES
+              GLASSMORPHIC VOICES
             </h2>
           </div>
 
-          <div className="bg-white/[0.03] border border-[#D4AF37]/30 rounded-2xl p-8 sm:p-12 mb-12 relative overflow-hidden">
-            <Quote size={48} className="text-[#D4AF37] mb-4 opacity-80" />
-            <p className="font-sans text-lg sm:text-2xl text-[#F5F5F0] italic leading-relaxed font-light mb-6">
-              "{testimonials[0].quote}"
-            </p>
-            <div className="flex items-center space-x-3 text-xs">
-              <span className="font-sans font-bold text-white">{testimonials[0].name}</span>
-              <span className="text-[#D4AF37]">•</span>
-              <span className="text-[#D4AF37] font-semibold">{testimonials[0].city}</span>
-            </div>
-          </div>
-
-          <div className="flex space-x-6 overflow-x-auto pb-6 pt-2 no-scrollbar snap-x snap-mandatory">
-            {testimonials.slice(1).map((t, idx) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="w-[320px] sm:w-[350px] shrink-0 bg-white/[0.02] border border-white/10 rounded-2xl p-8 flex flex-col justify-between snap-start hover:border-[#D4AF37]/40 transition-colors"
-              >
-                <div>
-                  <Quote size={28} className="text-[#D4AF37] mb-4 opacity-80" />
-                  <p className="font-sans text-sm text-white/80 italic leading-relaxed mb-6 font-light">
-                    "{t.quote}"
-                  </p>
-                </div>
-
-                <div className="border-t border-white/10 pt-4 flex items-center justify-between text-xs">
-                  <span className="font-sans font-bold text-white">{t.name}</span>
-                  <span className="font-sans font-semibold text-[#D4AF37]">{t.city}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <GlassmorphicTestimonials />
 
         </div>
       </section>
@@ -588,28 +544,24 @@ export const Home: React.FC = () => {
       {/* NEEDLE DRAW DIVIDER 3 */}
       <TattooNeedleDivider className="relative z-20" />
 
-      {/* SECTION 6 — ARTIST TEASER */}
+      {/* SECTION 6 — ARTIST TEASER WITH CLIP-PATH REVEAL & SVG MACHINE DRAW */}
       <section className="relative z-20 bg-[#050508] py-24 sm:py-36">
         <div className="max-w-[1200px] mx-auto px-6">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-5 relative"
-            >
+            {/* Left Portrait with Expanding Circular Clip-Path Reveal */}
+            <div className="lg:col-span-5 relative">
               <div className="rounded-[16px] overflow-hidden border border-[#D4AF37]/30 shadow-[0_0_40px_rgba(212,175,55,0.2)]">
-                <img
+                <ClipPathImageReveal
                   src="/stills/bonus_01.webp"
                   alt="Vishal Kumar Tattoo Artist"
-                  className="w-full h-auto object-cover filter contrast-[1.05]"
+                  className="aspect-[4/5]"
                 />
               </div>
-            </motion.div>
+            </div>
 
+            {/* Right Bio Content with Self-Drawing SVG Motif */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -617,9 +569,14 @@ export const Home: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-7 space-y-6"
             >
-              <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] block">
-                <TextScramble text="06 / THE ARTIST" />
-              </span>
+              <div className="flex items-center justify-between">
+                <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] block">
+                  <TextScramble text="06 / THE ARTIST" />
+                </span>
+
+                {/* Self-Drawing Tattoo Machine SVG Outline Motif */}
+                <SvgMachineDraw className="w-16 h-16 shrink-0" />
+              </div>
 
               <h2 className="font-display text-4xl sm:text-7xl text-[#F5F5F0] tracking-tight uppercase leading-none">
                 VISHAL KUMAR
@@ -658,17 +615,17 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 7 — FINAL BOOKING CTA */}
+      {/* SECTION 7 — FINAL BOOKING CTA WITH AURORA BLOB 2 & CHAR-BY-CHAR HEADING */}
       <section className="relative z-20 bg-[#050508] py-24 sm:py-36 border-t border-white/5 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none gold-radial-bg" />
+        {/* Aurora Blob 2 (Blue Tint) */}
+        <AuroraBlob color="blue" size={600} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
         <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10 space-y-8">
-          <LineMaskReveal
-            lines={['READY TO INK', 'YOUR STORY?']}
+          <CharByCharHeading
+            text="READY TO INK YOUR STORY?"
+            highlightWord="STORY?"
             as="h2"
-            className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight text-[#F5F5F0] uppercase"
-            highlightIndex={1}
-            highlightStyle="gold"
+            className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight uppercase"
           />
 
           <p className="font-sans text-sm sm:text-base text-white/60 max-w-xl mx-auto font-light">

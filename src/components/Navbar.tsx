@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { LiveStudioStatus } from './LiveStudioStatus';
 import { NavHoverPreview } from './NavHoverPreview';
 import { MagneticButton } from './MagneticButton';
+import { AudioToggle } from './AudioToggle';
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
@@ -38,7 +39,6 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* Nav Hover Floating Image Preview */}
       <NavHoverPreview activeHoverPath={hoveredPath} />
 
       {/* 1. DESKTOP FULL HORIZONTAL NAVBAR (min-width: 1024px / lg) */}
@@ -64,8 +64,8 @@ export const Navbar: React.FC = () => {
           <LiveStudioStatus />
         </div>
 
-        {/* CENTER-RIGHT: Navigation Links + BOOK NOW Button */}
-        <div className="flex items-center space-x-8 lg:space-x-10">
+        {/* CENTER-RIGHT: Navigation Links + Audio Toggle + BOOK NOW Button */}
+        <div className="flex items-center space-x-6 lg:space-x-8">
           <nav className="flex items-center space-x-6 lg:space-x-8">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
@@ -84,6 +84,9 @@ export const Navbar: React.FC = () => {
               );
             })}
           </nav>
+
+          {/* Opt-In Web Audio Synthesizer Toggle */}
+          <AudioToggle />
 
           <MagneticButton>
             <Link

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, MapPin, Phone, Check, Copy } from 'lucide-react';
+import { TrustMarquee } from './TrustMarquee';
 
 export const Footer: React.FC = () => {
   const [copiedUpi, setCopiedUpi] = useState(false);
@@ -21,8 +22,12 @@ export const Footer: React.FC = () => {
   const igQrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://instagram.com/bishal_kumar_tattoo_artist";
 
   return (
-    <footer className="bg-[#050508] border-t border-[#D4AF37]/30 pt-16 pb-8 text-[#F5F5F0] relative z-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer className="bg-[#050508] border-t border-[#D4AF37]/30 text-[#F5F5F0] relative z-20 overflow-hidden">
+      
+      {/* 7. TRUST MARQUEE STRIP MOVING RIGHT */}
+      <TrustMarquee />
+
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         
         {/* Top Feature Bar: UPI Deposit & Coupon Pill */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 pb-12 border-b border-white/10">
@@ -143,9 +148,9 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* GIANT OUTLINE ANTON BRAND WATERMARK */}
+        {/* 15. FOOTER MEGA TYPOGRAPHY */}
         <div className="w-full text-center py-6 select-none overflow-hidden">
-          <span className="font-display text-[11vw] leading-none text-outline-gold uppercase tracking-tighter inline-block opacity-20">
+          <span className="font-display text-[11vw] leading-none text-outline-gold uppercase tracking-tighter inline-block opacity-20 hover:opacity-40 transition-opacity duration-500">
             VISHAL INK TATTOO
           </span>
         </div>

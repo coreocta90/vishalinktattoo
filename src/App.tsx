@@ -10,6 +10,7 @@ import { ScrollProgressBar } from './components/ScrollProgressBar';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SweepTransition } from './components/SweepTransition';
+import { CursorParticles } from './components/CursorParticles';
 
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -48,6 +49,9 @@ const Layout: React.FC = () => {
       <div className="relative min-h-screen bg-[#050508] text-[#F5F5F0] flex flex-col justify-between overflow-x-hidden">
         {/* 1. Global Custom Gold Cursor */}
         <CustomCursor />
+
+        {/* 13. Desktop Gold Cursor Particle Trail */}
+        <CursorParticles />
 
         {/* 2. Session Preloader */}
         <Preloader />
