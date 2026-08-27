@@ -10,16 +10,69 @@
     --gold-primary: #D4AF37;
     --gold-glow: rgba(212, 175, 55, 0.3);
     --gold-subtle: rgba(212, 175, 55, 0.15);
-    --text-primary: #FFFFFF;
+    --text-luxury: #F5F5F0;
     --text-secondary: rgba(255, 255, 255, 0.6);
     --text-tertiary: rgba(255, 255, 255, 0.4);
   }
 
-  body {
+  html {
     background-color: #050508;
-    color: #FFFFFF;
+    color: #F5F5F0;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
+
+  body {
+    background-color: #050508;
+    color: #F5F5F0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Global Luxury Text Selection */
+  ::selection {
+    background-color: #D4AF37;
+    color: #050508;
+  }
+  ::-moz-selection {
+    background-color: #D4AF37;
+    color: #050508;
+  }
+
+  /* Custom Luxury Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050508;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #D4AF37 0%, #8a6d1f 100%);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
+  }
+}
+
+/* Lenis Smooth Scroll CSS Integration */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* Custom Marquee Animation */
@@ -34,7 +87,7 @@
   animation: marquee 40s linear infinite;
 }
 
-/* Custom Scrollbar hiding for horizontal carousels */
+/* Hide scrollbars for horizontal carousels */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -43,18 +96,18 @@
   scrollbar-width: none;
 }
 
-/* Custom Gold Glow utility classes */
-.gold-border-glow {
-  border: 1px solid rgba(212, 175, 55, 0.15);
-  transition: all 0.3s ease;
+/* Gold Outline Text Utility */
+.text-outline-gold {
+  -webkit-text-stroke: 1px #D4AF37;
+  color: transparent;
 }
 
-.gold-border-glow:hover {
-  border-color: rgba(212, 175, 55, 0.4);
-  box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
-  transform: translateY(-4px);
+.text-outline-white {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+  color: transparent;
 }
 
+/* Radial Gold Background Glow */
 .gold-radial-bg {
-  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.12) 0%, rgba(5, 5, 8, 0) 70%);
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.08) 0%, rgba(5, 5, 8, 0) 70%);
 }

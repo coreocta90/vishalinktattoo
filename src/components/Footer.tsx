@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
   const igQrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://instagram.com/bishal_kumar_tattoo_artist";
 
   return (
-    <footer className="bg-[#050508] border-t border-[#D4AF37]/20 pt-16 pb-12 text-white relative z-20">
+    <footer className="bg-[#050508] border-t border-[#D4AF37]/30 pt-16 pb-8 text-[#F5F5F0] relative z-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Top Feature Bar: UPI Deposit & Coupon Pill */}
@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
               <span className="text-[10px] text-[#D4AF37] font-bold uppercase tracking-widest block mb-1">
                 SPECIAL WELCOME OFFER
               </span>
-              <div className="font-display text-xl text-white">
+              <div className="font-display text-xl text-[#F5F5F0]">
                 FIRST10 — 10% OFF FIRST INK
               </div>
               <p className="text-xs text-white/50 mt-1">Mention this code during 1-on-1 consultation.</p>
@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
               <span className="text-[10px] text-white/50 font-bold uppercase tracking-widest block mb-1">
                 STUDIO BOOKING DEPOSIT
               </span>
-              <div className="font-sans text-sm font-semibold text-white">
+              <div className="font-sans text-sm font-semibold text-[#F5F5F0]">
                 UPI: <span className="text-[#D4AF37]">vishaltattoos@upi</span>
               </div>
               <p className="text-xs text-white/50 mt-1">Confirm slot with ₹500 advance deposit.</p>
@@ -74,10 +74,10 @@ export const Footer: React.FC = () => {
           
           {/* Column 1: Brand Info */}
           <div className="lg:col-span-4 space-y-4">
-            <Link to="/" className="font-display text-2xl tracking-wider text-white inline-block">
+            <Link to="/" className="font-display text-2xl tracking-wider text-[#F5F5F0] inline-block">
               <span className="text-[#D4AF37]">VISHAL</span> KUMAR TATTOOS
             </Link>
-            <p className="text-xs text-white/60 leading-relaxed max-w-sm">
+            <p className="text-xs text-white/60 leading-relaxed max-w-sm font-light">
               Jharkhand's premier dark luxury tattoo studio. Fine line precision, black & grey photorealism, and 100% hospital-grade sterilization standards in Dhanbad.
             </p>
             <div className="text-xs text-[#D4AF37] font-semibold tracking-wider pt-2">
@@ -87,7 +87,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Navigation Links */}
           <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-display text-lg text-white tracking-wide">QUICK NAVIGATION</h4>
+            <h4 className="font-display text-lg text-[#F5F5F0] tracking-wide">QUICK NAVIGATION</h4>
             <ul className="space-y-2 text-xs text-white/60">
               <li><Link to="/" className="hover:text-[#D4AF37] transition-colors">Home</Link></li>
               <li><Link to="/portfolio" className="hover:text-[#D4AF37] transition-colors">Portfolio</Link></li>
@@ -100,7 +100,7 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Contact & Address */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-display text-lg text-white tracking-wide">STUDIO LOCATION</h4>
+            <h4 className="font-display text-lg text-[#F5F5F0] tracking-wide">STUDIO LOCATION</h4>
             <div className="space-y-2 text-xs text-white/60">
               <div className="flex items-start space-x-2">
                 <MapPin size={16} className="text-[#D4AF37] shrink-0 mt-0.5" />
@@ -121,10 +121,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: QR Codes */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-display text-lg text-white tracking-wide">SCAN TO CONNECT</h4>
+            <h4 className="font-display text-lg text-[#F5F5F0] tracking-wide">SCAN TO CONNECT</h4>
             <div className="flex items-center space-x-4">
               
-              {/* WhatsApp QR */}
               <div className="bg-white p-2 rounded-xl text-center space-y-1">
                 <img src={waQrUrl} alt="Scan to Book WhatsApp" className="w-20 h-20" />
                 <span className="block text-[9px] font-bold text-black uppercase tracking-wider">
@@ -132,7 +131,6 @@ export const Footer: React.FC = () => {
                 </span>
               </div>
 
-              {/* Instagram QR */}
               <div className="bg-white p-2 rounded-xl text-center space-y-1">
                 <img src={igQrUrl} alt="Scan to Follow Instagram" className="w-20 h-20" />
                 <span className="block text-[9px] font-bold text-black uppercase tracking-wider">
@@ -145,13 +143,20 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* Bottom Line */}
-        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/40 gap-4">
+        {/* GIANT OUTLINE ANTON BRAND WATERMARK */}
+        <div className="w-full text-center py-6 select-none overflow-hidden">
+          <span className="font-display text-[11vw] leading-none text-outline-gold uppercase tracking-tighter inline-block opacity-20">
+            VISHAL INK TATTOO
+          </span>
+        </div>
+
+        {/* Bottom Copyright Line */}
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-white/40 gap-4">
           <div>© 2026 Vishal Kumar Tattoos. All rights reserved.</div>
-          <div className="flex space-x-6">
-            <span>Sterile Medical Needles</span>
+          <div className="flex space-x-6 font-mono text-[11px]">
+            <span>STERILE MEDICAL NEEDLES</span>
             <span>•</span>
-            <span>Hospital Hygiene Certified</span>
+            <span>HOSPITAL HYGIENE CERTIFIED</span>
           </div>
         </div>
 

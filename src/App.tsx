@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { LenisProvider } from './components/LenisProvider';
 import { GrainOverlay } from './components/GrainOverlay';
 import { CustomCursor } from './components/CustomCursor';
 import { Preloader } from './components/Preloader';
@@ -18,6 +19,7 @@ import { Services } from './pages/Services';
 import { TryOn } from './pages/TryOn';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
+import { NotFound } from './pages/NotFound';
 
 const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
@@ -38,6 +40,7 @@ const AnimatedRoutes: React.FC = () => {
           <Route path="/try-on" element={<TryOn />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
@@ -46,36 +49,38 @@ const AnimatedRoutes: React.FC = () => {
 
 const Layout: React.FC = () => {
   return (
-    <div className="relative min-h-screen bg-[#050508] text-white flex flex-col justify-between overflow-x-hidden">
-      {/* 1. Global Custom Gold Cursor */}
-      <CustomCursor />
+    <LenisProvider>
+      <div className="relative min-h-screen bg-[#050508] text-[#F5F5F0] flex flex-col justify-between overflow-x-hidden">
+        {/* 1. Global Custom Gold Cursor */}
+        <CustomCursor />
 
-      {/* 2. Session Preloader */}
-      <Preloader />
+        {/* 2. Session Preloader */}
+        <Preloader />
 
-      {/* 3. Scroll Progress Bar */}
-      <ScrollProgressBar />
+        {/* 3. Scroll Progress Bar */}
+        <ScrollProgressBar />
 
-      {/* 4. Floating WhatsApp Button */}
-      <WhatsAppFloat />
+        {/* 4. Floating WhatsApp Button */}
+        <WhatsAppFloat />
 
-      {/* 5. Scroll to Top Helper */}
-      <ScrollToTop />
+        {/* 5. Scroll to Top Helper */}
+        <ScrollToTop />
 
-      {/* 6. SVG Grain Overlay Texture */}
-      <GrainOverlay />
+        {/* 6. SVG Grain Overlay Texture */}
+        <GrainOverlay />
 
-      {/* 7. Global Navbar */}
-      <Navbar />
+        {/* 7. Global Navbar */}
+        <Navbar />
 
-      {/* 8. Animated Page View */}
-      <main className="flex-grow">
-        <AnimatedRoutes />
-      </main>
+        {/* 8. Animated Page View */}
+        <main className="flex-grow">
+          <AnimatedRoutes />
+        </main>
 
-      {/* 9. Global Footer */}
-      <Footer />
-    </div>
+        {/* 9. Global Footer */}
+        <Footer />
+      </div>
+    </LenisProvider>
   );
 };
 

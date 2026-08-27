@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Quote, Phone, Calendar } from 'lucide-react';
+import { Quote, Phone, Calendar, ArrowRight } from 'lucide-react';
 import { MarqueeStrip } from '../components/MarqueeStrip';
 import { AnimatedCounter } from '../components/AnimatedCounter';
 import { HygieneSection } from '../components/HygieneSection';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
 import { InkStyleQuiz } from '../components/InkStyleQuiz';
 import { StudioTour } from '../components/StudioTour';
+import { ServiceRowList } from '../components/ServiceRowList';
+import { LineMaskReveal } from '../components/LineMaskReveal';
+import { MagneticButton } from '../components/MagneticButton';
 
 const TOTAL_FRAMES = 356;
 const FRAME_PREFIX = '/frames/frame_';
@@ -24,7 +27,6 @@ export const Home: React.FC = () => {
   const [activeCaptionIndex, setActiveCaptionIndex] = useState<number | null>(0);
   const [showScrollHint, setShowScrollHint] = useState(true);
 
-  // Chapters data
   const chapters = [
     { tag: 'CHAPTER 01', title: 'THE CANVAS', sub: 'Every journey begins on untouched skin. Pure potential waiting for an enduring story.', in: -0.02, out: 0.13 },
     { tag: 'CHAPTER 02', title: 'THE RITUAL', sub: 'Rotary machine spinning. Pre-sterilized medical needles. The solemn preparation of sacred art.', in: 0.12, out: 0.25 },
@@ -259,13 +261,6 @@ export const Home: React.FC = () => {
 
   const loaderPct = Math.min(100, Math.floor((loadedCount / totalToLoadCount) * 100));
 
-  const craftCards = [
-    { tag: 'REALISM', title: 'Black & Grey Realism', desc: 'Photorealistic portraits and wildlife with soft gradient shading and photographic depth.', price: '₹350 / inch' },
-    { tag: 'TRIBAL', title: 'Tribal Patterns', desc: 'Polynesian, Maori and Vedic geometric bands with jet-black saturation and razor-sharp lines.', price: '₹300 / inch' },
-    { tag: 'CUSTOM', title: 'Custom Design', desc: 'One-of-a-kind designs built with you — from first sketch to final ink.', price: '₹300 / inch' },
-    { tag: 'COVER-UP', title: 'Cover-Up & Rework', desc: 'Old or faded tattoos transformed into bold new artwork.', price: 'From ₹300 / inch' }
-  ];
-
   const featuredWorks = [
     { title: 'LION PORTRAIT', style: 'Black & Grey Realism', image: '/stills/bonus_01.webp', offset: false },
     { title: 'FINE LINE PRECISION', style: 'Realism Detail', image: '/stills/bonus_02.webp', offset: true },
@@ -284,7 +279,7 @@ export const Home: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full bg-[#050508]">
+    <div className="relative w-full bg-[#050508] text-[#F5F5F0]">
       
       {/* PRELOADER OVERLAY */}
       {!isUnlocked && (
@@ -327,10 +322,10 @@ export const Home: React.FC = () => {
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#050508]/80 border border-[#D4AF37]/20 text-[#D4AF37] text-xs font-semibold tracking-widest uppercase mb-4 backdrop-blur-md shadow-2xl">
               {cap.tag}
             </span>
-            <h1 className="font-display text-4xl sm:text-7xl md:text-8xl tracking-tight text-white uppercase leading-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.95)] mb-4">
+            <h1 className="font-display text-4xl sm:text-7xl md:text-8xl tracking-tight text-[#F5F5F0] uppercase leading-none drop-shadow-[0_4px_30px_rgba(0,0,0,0.95)] mb-4">
               {cap.title}
             </h1>
-            <p className="text-sm sm:text-lg text-white/80 max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]">
+            <p className="text-sm sm:text-lg text-white/80 max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)] font-light">
               {cap.sub}
             </p>
           </div>
@@ -367,29 +362,24 @@ export const Home: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="font-display text-5xl sm:text-8xl tracking-tight text-white mb-8"
+            className="font-display text-5xl sm:text-8xl tracking-tight text-[#F5F5F0] mb-8 uppercase"
           >
             BECOME THE MASTERPIECE
           </motion.h2>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
+          <MagneticButton>
             <Link
               to="/portfolio"
-              className="inline-flex items-center px-10 py-5 bg-transparent border-2 border-[#D4AF37] text-[#D4AF37] font-display text-xl sm:text-2xl tracking-wider rounded-xl hover:bg-[#D4AF37] hover:text-[#050508] transition-all duration-300 shadow-[0_0_40px_rgba(212,175,55,0.25)] hover:shadow-[0_0_60px_rgba(212,175,55,0.6)] group"
+              className="inline-flex items-center px-10 py-5 bg-transparent border-2 border-[#D4AF37] text-[#D4AF37] font-display text-xl sm:text-2xl tracking-wider rounded-xl hover:bg-[#D4AF37] hover:text-[#050508] transition-all duration-300 shadow-[0_0_40px_rgba(212,175,55,0.25)] group"
             >
               <span>ENTER THE STUDIO</span>
               <span className="ml-3 group-hover:translate-x-2 transition-transform">→</span>
             </Link>
-          </motion.div>
+          </MagneticButton>
         </div>
 
         <div className="relative z-10 flex items-center justify-between border-t border-white/10 pt-6">
-          <div className="text-xs text-white/40">
+          <div className="text-xs text-white/40 font-mono">
             Steel Gate, near Baba Sweets, Dhanbad, Jharkhand
           </div>
           <Link
@@ -407,29 +397,31 @@ export const Home: React.FC = () => {
         <MarqueeStrip />
       </div>
 
-      {/* SECTION 1 — MANIFESTO */}
-      <section className="relative z-20 bg-[#050508] py-20 sm:py-32">
-        <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.2em] inline-block">
-              01 / MANIFESTO
-            </span>
-            
-            <h2 className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight leading-none uppercase">
-              <span className="text-white block">EVERY SKIN TELLS A STORY.</span>
-              <span className="text-[#D4AF37] block mt-2">WE INK IT FOREVER.</span>
-            </h2>
+      {/* SECTION 1 — MANIFESTO WITH GIANT GHOST WORD "INK" */}
+      <section className="relative z-20 bg-[#050508] py-24 sm:py-36 overflow-hidden">
+        {/* Giant Ghost Text "INK" */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
+          <span className="font-display text-[25vw] leading-none text-white uppercase tracking-tighter">
+            INK
+          </span>
+        </div>
 
-            <p className="font-sans text-sm sm:text-base text-white/60 max-w-[600px] mx-auto leading-relaxed font-light">
-              From fine-line scripts to full black & grey realism — every piece at Vishal Kumar Tattoos is designed, sterilized, and inked like a masterpiece.
-            </p>
-          </motion.div>
+        <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10">
+          <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] inline-block mb-6">
+            01 / MANIFESTO
+          </span>
+          
+          <LineMaskReveal
+            lines={['EVERY SKIN TELLS A STORY.', 'WE INK IT FOREVER.']}
+            as="h2"
+            className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight leading-none uppercase mb-6"
+            highlightIndex={1}
+            highlightStyle="gold"
+          />
+
+          <p className="font-sans text-sm sm:text-base text-white/60 max-w-[600px] mx-auto leading-relaxed font-light">
+            From fine-line scripts to full black & grey realism — every piece at Vishal Kumar Tattoos is designed, sterilized, and inked like a masterpiece.
+          </p>
         </div>
       </section>
 
@@ -438,75 +430,58 @@ export const Home: React.FC = () => {
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-[#D4AF37]/15 text-center">
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="py-4 md:py-0 md:px-6 space-y-1"
-            >
+            <div className="py-4 md:py-0 md:px-6 space-y-1">
               <div className="font-display text-4xl sm:text-5xl text-[#D4AF37]">
                 <AnimatedCounter end={7650} suffix="+" />
               </div>
               <div className="font-sans text-xs font-semibold text-white/50 uppercase tracking-widest">Instagram Followers</div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="py-4 md:py-0 md:px-6 space-y-1"
-            >
+            <div className="py-4 md:py-0 md:px-6 space-y-1">
               <div className="font-display text-4xl sm:text-5xl text-[#D4AF37]">
                 <AnimatedCounter end={300} suffix="+" />
               </div>
               <div className="font-sans text-xs font-semibold text-white/50 uppercase tracking-widest">Happy Clients</div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="py-4 md:py-0 md:px-6 space-y-1"
-            >
+            <div className="py-4 md:py-0 md:px-6 space-y-1">
               <div className="font-display text-4xl sm:text-5xl text-[#D4AF37]">
                 <AnimatedCounter end={500} suffix="+" />
               </div>
               <div className="font-sans text-xs font-semibold text-white/50 uppercase tracking-widest">Tattoos Inked</div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="py-4 md:py-0 md:px-6 space-y-1"
-            >
+            <div className="py-4 md:py-0 md:px-6 space-y-1">
               <div className="font-display text-4xl sm:text-5xl text-[#D4AF37]">
                 <AnimatedCounter end={300} prefix="₹" />
               </div>
               <div className="font-sans text-xs font-semibold text-white/50 uppercase tracking-widest">Per Inch Starting</div>
-            </motion.div>
+            </div>
 
           </div>
         </div>
       </section>
 
-      {/* INK STYLE QUIZ (Placed right after stats) */}
+      {/* INK STYLE QUIZ */}
       <InkStyleQuiz />
 
-      {/* SECTION 3 — CRAFT PREVIEW */}
-      <section className="relative z-20 bg-[#050508] py-20 sm:py-32">
-        <div className="max-w-[1200px] mx-auto px-6">
+      {/* SECTION 3 — CRAFT PREVIEW WITH LINEAR.APP STYLE ROWS */}
+      <section className="relative z-20 bg-[#050508] py-24 sm:py-36 overflow-hidden">
+        {/* Giant Ghost Text "CRAFT" */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
+          <span className="font-display text-[22vw] leading-none text-white uppercase tracking-tighter">
+            CRAFT
+          </span>
+        </div>
+
+        <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
-              <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.2em] mb-2 block">
+              <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] mb-2 block">
                 02 / DISCIPLINES
               </span>
-              <h2 className="font-display text-4xl sm:text-5xl text-white tracking-wide uppercase">
+              <h2 className="font-display text-4xl sm:text-6xl text-[#F5F5F0] tracking-wide uppercase">
                 THE CRAFT
               </h2>
             </div>
@@ -520,41 +495,7 @@ export const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {craftCards.map((card, idx) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-[#0a0a12] border border-[#D4AF37]/15 rounded-[16px] p-8 flex flex-col justify-between hover:border-[#D4AF37] hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)] transition-all duration-300 group"
-              >
-                <div>
-                  <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase rounded-md inline-block mb-4">
-                    {card.tag}
-                  </span>
-                  <h3 className="font-display text-2xl sm:text-3xl text-white mb-3 group-hover:text-[#D4AF37] transition-colors">
-                    {card.title}
-                  </h3>
-                  <p className="font-sans text-sm text-white/60 leading-relaxed mb-6">
-                    {card.desc}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between pt-6 border-t border-white/10">
-                  <span className="font-display text-2xl text-[#D4AF37]">{card.price}</span>
-                  <Link
-                    to="/contact"
-                    className="font-sans text-xs font-bold text-[#D4AF37] uppercase tracking-wider flex items-center space-x-1 group-hover:translate-x-1 transition-transform"
-                  >
-                    <span>Reserve Session</span>
-                    <span>→</span>
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <ServiceRowList />
 
         </div>
       </section>
@@ -562,19 +503,19 @@ export const Home: React.FC = () => {
       {/* HYGIENE & SAFETY SECTION */}
       <HygieneSection />
 
-      {/* STUDIO TOUR (Placed after hygiene section) */}
+      {/* STUDIO TOUR */}
       <StudioTour />
 
       {/* SECTION 4 — FEATURED WORK & BEFORE/AFTER COVER-UP SLIDER */}
-      <section className="relative z-20 bg-[#050508] py-20 sm:py-32 border-t border-white/5">
+      <section className="relative z-20 bg-[#050508] py-24 sm:py-36 border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
-              <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.2em] mb-2 block">
+              <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] mb-2 block">
                 03 / GALLERY TEASER
               </span>
-              <h2 className="font-display text-4xl sm:text-5xl text-white tracking-wide uppercase">
+              <h2 className="font-display text-4xl sm:text-6xl text-[#F5F5F0] tracking-wide uppercase">
                 FEATURED WORK
               </h2>
             </div>
@@ -592,6 +533,7 @@ export const Home: React.FC = () => {
             <BeforeAfterSlider />
           </div>
 
+          {/* Staggered Masonry Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredWorks.map((item, idx) => (
               <motion.div
@@ -600,7 +542,7 @@ export const Home: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`group relative rounded-[12px] overflow-hidden bg-[#0a0a12] border border-[#D4AF37]/15 hover:border-[#D4AF37] hover:scale-[1.03] transition-all duration-300 shadow-xl ${
+                className={`group relative rounded-[12px] overflow-hidden bg-[#0a0a12] border border-[#D4AF37]/15 hover:border-[#D4AF37] hover:scale-[1.03] transition-all duration-500 shadow-xl ${
                   item.offset ? 'lg:translate-y-8' : ''
                 }`}
               >
@@ -608,7 +550,7 @@ export const Home: React.FC = () => {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.05]"
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out filter contrast-[1.05]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-transparent to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
                   
@@ -616,7 +558,7 @@ export const Home: React.FC = () => {
                     <span className="text-[#D4AF37] font-sans text-[10px] font-bold uppercase tracking-widest block mb-1">
                       {item.style}
                     </span>
-                    <h3 className="font-display text-xl text-white uppercase tracking-wide">
+                    <h3 className="font-display text-xl text-[#F5F5F0] uppercase tracking-wide">
                       {item.title}
                     </h3>
                   </div>
@@ -628,39 +570,60 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 5 — CLIENT VOICES */}
-      <section className="relative z-20 bg-[#0a0a12] py-20 sm:py-32 border-y border-[#D4AF37]/15 overflow-hidden">
-        <div className="max-w-[1200px] mx-auto px-6">
+      {/* SECTION 5 — CLIENT VOICES WITH GIANT GHOST WORD "STORY" */}
+      <section className="relative z-20 bg-[#0a0a12] py-24 sm:py-36 border-y border-[#D4AF37]/15 overflow-hidden">
+        {/* Giant Ghost Text "STORY" */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.04]">
+          <span className="font-display text-[22vw] leading-none text-white uppercase tracking-tighter">
+            STORY
+          </span>
+        </div>
+
+        <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           
           <div className="mb-12">
-            <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.2em] mb-2 block">
+            <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] mb-2 block">
               04 / TESTIMONIALS
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl text-white tracking-wide uppercase">
+            <h2 className="font-display text-4xl sm:text-6xl text-[#F5F5F0] tracking-wide uppercase">
               CLIENT VOICES
             </h2>
           </div>
 
-          <div className="flex space-x-6 overflow-x-auto pb-8 pt-2 no-scrollbar snap-x snap-mandatory">
-            {testimonials.map((t, idx) => (
+          {/* Featured Large Quote */}
+          <div className="bg-white/[0.03] border border-[#D4AF37]/30 rounded-2xl p-8 sm:p-12 mb-12 relative overflow-hidden">
+            <Quote size={48} className="text-[#D4AF37] mb-4 opacity-80" />
+            <p className="font-sans text-lg sm:text-2xl text-[#F5F5F0] italic leading-relaxed font-light mb-6">
+              "{testimonials[0].quote}"
+            </p>
+            <div className="flex items-center space-x-3 text-xs">
+              <span className="font-sans font-bold text-white">{testimonials[0].name}</span>
+              <span className="text-[#D4AF37]">•</span>
+              <span className="text-[#D4AF37] font-semibold">{testimonials[0].city}</span>
+            </div>
+          </div>
+
+          {/* Carousel Row */}
+          <div className="flex space-x-6 overflow-x-auto pb-6 pt-2 no-scrollbar snap-x snap-mandatory">
+            {testimonials.slice(1).map((t, idx) => (
               <motion.div
                 key={t.name}
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="w-[320px] sm:w-[350px] shrink-0 bg-white/[0.03] border border-white/10 rounded-2xl p-8 flex flex-col justify-between snap-start hover:border-[#D4AF37]/40 transition-colors"
+                className="w-[320px] sm:w-[350px] shrink-0 bg-white/[0.02] border border-white/10 rounded-2xl p-8 flex flex-col justify-between snap-start hover:border-[#D4AF37]/40 transition-colors"
               >
                 <div>
-                  <Quote size={32} className="text-[#D4AF37] mb-4 opacity-80" />
-                  <p className="font-sans text-sm text-white/80 italic leading-relaxed mb-6">
+                  <Quote size={28} className="text-[#D4AF37] mb-4 opacity-80" />
+                  <p className="font-sans text-sm text-white/80 italic leading-relaxed mb-6 font-light">
                     "{t.quote}"
                   </p>
                 </div>
 
-                <div className="border-t border-white/10 pt-4 flex items-center justify-between">
-                  <span className="font-sans text-sm font-bold text-white">{t.name}</span>
-                  <span className="font-sans text-xs font-semibold text-[#D4AF37]">{t.city}</span>
+                <div className="border-t border-white/10 pt-4 flex items-center justify-between text-xs">
+                  <span className="font-sans font-bold text-white">{t.name}</span>
+                  <span className="font-sans font-semibold text-[#D4AF37]">{t.city}</span>
                 </div>
               </motion.div>
             ))}
@@ -670,7 +633,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* SECTION 6 — ARTIST TEASER */}
-      <section className="relative z-20 bg-[#050508] py-20 sm:py-32">
+      <section className="relative z-20 bg-[#050508] py-24 sm:py-36">
         <div className="max-w-[1200px] mx-auto px-6">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -698,11 +661,11 @@ export const Home: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-7 space-y-6"
             >
-              <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.2em] block">
+              <span className="text-[#D4AF37] font-sans text-xs font-semibold uppercase tracking-[0.25em] block">
                 05 / THE ARTIST
               </span>
 
-              <h2 className="font-display text-4xl sm:text-7xl text-white tracking-tight uppercase leading-none">
+              <h2 className="font-display text-4xl sm:text-7xl text-[#F5F5F0] tracking-tight uppercase leading-none">
                 VISHAL KUMAR
               </h2>
 
@@ -740,31 +703,32 @@ export const Home: React.FC = () => {
       </section>
 
       {/* SECTION 7 — FINAL BOOKING CTA */}
-      <section className="relative z-20 bg-[#050508] py-20 sm:py-32 border-t border-white/5 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15)_0%,rgba(5,5,8,0)_70%)]" />
+      <section className="relative z-20 bg-[#050508] py-24 sm:py-36 border-t border-white/5 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none gold-radial-bg" />
 
         <div className="max-w-[1200px] mx-auto px-6 text-center relative z-10 space-y-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight text-white uppercase"
-          >
-            READY TO INK YOUR STORY?
-          </motion.h2>
+          <LineMaskReveal
+            lines={['READY TO INK', 'YOUR STORY?']}
+            as="h2"
+            className="font-display text-4xl sm:text-7xl lg:text-8xl tracking-tight text-[#F5F5F0] uppercase"
+            highlightIndex={1}
+            highlightStyle="gold"
+          />
 
           <p className="font-sans text-sm sm:text-base text-white/60 max-w-xl mx-auto font-light">
             Free consultation. Sterilized equipment. Premium ink. Book your session today.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Link
-              to="/contact"
-              className="w-full sm:w-auto px-8 py-4 bg-[#D4AF37] text-[#050508] font-bold text-xs tracking-widest uppercase rounded-xl hover:bg-[#e0bc43] transition-all shadow-[0_0_30px_rgba(212,175,55,0.4)] flex items-center justify-center space-x-2"
-            >
-              <Calendar size={16} />
-              <span>BOOK APPOINTMENT</span>
-            </Link>
+            <MagneticButton>
+              <Link
+                to="/contact"
+                className="w-full sm:w-auto px-8 py-4 bg-[#D4AF37] text-[#050508] font-bold text-xs tracking-widest uppercase rounded-xl hover:bg-[#e0bc43] transition-all shadow-[0_0_30px_rgba(212,175,55,0.4)] flex items-center justify-center space-x-2"
+              >
+                <Calendar size={16} />
+                <span>BOOK APPOINTMENT</span>
+              </Link>
+            </MagneticButton>
 
             <a
               href="tel:+918102578635"

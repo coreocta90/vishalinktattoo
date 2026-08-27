@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BeforeAfterSlider } from '../components/BeforeAfterSlider';
+import { LineMaskReveal } from '../components/LineMaskReveal';
 
 interface PortfolioItem {
   id: string;
@@ -10,6 +11,8 @@ interface PortfolioItem {
   image: string;
   description: string;
   size: string;
+  aspectRatio: string; // e.g. aspect-[3/4], aspect-square, aspect-[4/5]
+  offset: boolean;
 }
 
 const portfolioData: PortfolioItem[] = [
@@ -19,7 +22,9 @@ const portfolioData: PortfolioItem[] = [
     category: 'Realism',
     image: '/stills/bonus_01.webp',
     description: 'Hyper-detailed black & grey realism featuring intense eyes, textured mane, and soft gradient shading on upper arm.',
-    size: '8 x 5 inches'
+    size: '8 x 5 inches',
+    aspectRatio: 'aspect-[3/4]',
+    offset: false
   },
   {
     id: '2',
@@ -27,7 +32,9 @@ const portfolioData: PortfolioItem[] = [
     category: 'Realism',
     image: '/stills/bonus_02.webp',
     description: 'Razor-sharp line weight execution and micro-shading details during studio session.',
-    size: '6 x 4 inches'
+    size: '6 x 4 inches',
+    aspectRatio: 'aspect-[4/5]',
+    offset: true
   },
   {
     id: '3',
@@ -35,7 +42,9 @@ const portfolioData: PortfolioItem[] = [
     category: 'Realism',
     image: '/frames/frame_0180.webp',
     description: 'Complex gradient transition built with hospital-grade rotary needle setup.',
-    size: '10 x 6 inches'
+    size: '10 x 6 inches',
+    aspectRatio: 'aspect-square',
+    offset: false
   },
   {
     id: '4',
@@ -43,7 +52,9 @@ const portfolioData: PortfolioItem[] = [
     category: 'Tribal',
     image: '/frames/frame_0240.webp',
     description: 'Traditional jet-black tribal band depicting strength, lineage, and ancestral warrior symbols.',
-    size: '12 x 4 inches'
+    size: '12 x 4 inches',
+    aspectRatio: 'aspect-[3/4]',
+    offset: true
   },
   {
     id: '5',
@@ -51,7 +62,9 @@ const portfolioData: PortfolioItem[] = [
     category: 'Script',
     image: '/frames/frame_0300.webp',
     description: 'Custom hand-lettered lettering with delicate filigree flourishing and deep black saturation.',
-    size: '7 x 3 inches'
+    size: '7 x 3 inches',
+    aspectRatio: 'aspect-[4/5]',
+    offset: false
   },
   {
     id: '6',
@@ -59,7 +72,9 @@ const portfolioData: PortfolioItem[] = [
     category: 'Cover-up',
     image: '/frames/frame_0350.webp',
     description: 'Complete transformation of an old 10-year faded tattoo into a majestic rising phoenix.',
-    size: '11 x 7 inches'
+    size: '11 x 7 inches',
+    aspectRatio: 'aspect-[3/4]',
+    offset: true
   }
 ];
 
@@ -73,7 +88,6 @@ export const Portfolio: React.FC = () => {
     ? portfolioData
     : portfolioData.filter((item) => item.category === activeFilter);
 
-  // Keyboard navigation & body scroll lock for Lightbox
   useEffect(() => {
     if (selectedIndex !== null) {
       document.body.style.overflow = 'hidden';
@@ -108,18 +122,24 @@ export const Portfolio: React.FC = () => {
   const currentItem = selectedIndex !== null ? filteredItems[selectedIndex] : null;
 
   return (
-    <div className="pt-28 pb-24 bg-[#050508] min-h-screen text-white">
+    <div className="pt-28 pb-24 bg-[#050508] min-h-screen text-[#F5F5F0]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-[#D4AF37] text-xs font-semibold tracking-widest uppercase mb-3 inline-block">
-            PERMANENT LIVING ART
+          <span className="text-[#D4AF37] font-sans text-xs font-semibold tracking-[0.25em] uppercase mb-4 inline-block">
+            01 / PERMANENT ARTWORK
           </span>
-          <h1 className="font-display text-5xl sm:text-8xl tracking-tight text-white mb-6 uppercase">
-            PORTFOLIO
-          </h1>
-          <p className="text-white/60 text-base sm:text-lg leading-relaxed">
+          
+          <LineMaskReveal
+            lines={['CURATED', 'PORTFOLIO']}
+            as="h1"
+            className="font-display text-5xl sm:text-8xl tracking-tight text-[#F5F5F0] mb-6 uppercase"
+            highlightIndex={1}
+            highlightStyle="gold"
+          />
+
+          <p className="font-sans text-white/60 text-base sm:text-lg leading-relaxed font-light">
             Explore curated masterpieces crafted by Vishal Kumar in Dhanbad. Each piece is designed 1-on-1 for maximum detail and longevity.
           </p>
           <div className="w-16 h-1 bg-[#D4AF37] mx-auto mt-6 rounded-full shadow-[0_0_12px_#D4AF37]" />
@@ -131,7 +151,7 @@ export const Portfolio: React.FC = () => {
             <span className="text-[#D4AF37] text-xs font-bold tracking-widest uppercase block mb-1">
               BEFORE & AFTER SPOTLIGHT
             </span>
-            <h3 className="font-display text-2xl sm:text-3xl text-white">
+            <h3 className="font-display text-2xl sm:text-4xl text-[#F5F5F0]">
               TRANSFORMATION SHOWCASE
             </h3>
           </div>
@@ -139,7 +159,7 @@ export const Portfolio: React.FC = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-16">
           {filters.map((filter) => (
             <button
               key={filter}
@@ -149,7 +169,7 @@ export const Portfolio: React.FC = () => {
               }}
               className={`px-6 py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 ${
                 activeFilter === filter
-                  ? 'bg-[#D4AF37] text-[#050508] shadow-[0_0_20px_rgba(212,175,55,0.4)] scale-105'
+                  ? 'bg-[#D4AF37] text-[#050508] shadow-[0_0_20px_rgba(212,175,55,0.4)] scale-105 font-bold'
                   : 'bg-white/5 text-white/70 hover:text-white hover:bg-white/10 border border-white/10'
               }`}
             >
@@ -158,7 +178,7 @@ export const Portfolio: React.FC = () => {
           ))}
         </div>
 
-        {/* Gallery Grid */}
+        {/* Editorial Masonry Grid with Ken Burns & Alternating Offsets */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence>
             {filteredItems.map((item, idx) => (
@@ -168,37 +188,44 @@ export const Portfolio: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
                 onClick={() => setSelectedIndex(idx)}
-                className="group relative bg-[#0a0a12] border border-[#D4AF37]/15 rounded-2xl overflow-hidden cursor-pointer hover:border-[#D4AF37]/60 hover:shadow-[0_0_35px_rgba(212,175,55,0.2)] transition-all duration-300"
+                className={`group relative bg-[#0a0a12] border border-[#D4AF37]/15 rounded-2xl overflow-hidden cursor-pointer hover:border-[#D4AF37] hover:shadow-[0_0_40px_rgba(212,175,55,0.25)] transition-all duration-500 ${
+                  item.offset ? 'lg:translate-y-6' : ''
+                }`}
               >
-                <div className="aspect-[4/3] overflow-hidden relative">
+                {/* Image Aspect Ratio Wrapper with Ken Burns Effect */}
+                <div className={`${item.aspectRatio} overflow-hidden relative bg-black`}>
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.05]"
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out filter contrast-[1.05]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-transparent to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
                   
-                  <span className="absolute top-4 left-4 px-3 py-1 bg-[#050508]/80 backdrop-blur-md border border-[#D4AF37]/30 text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase rounded-md">
+                  <span className="absolute top-4 left-4 px-3 py-1 bg-[#050508]/80 backdrop-blur-md border border-[#D4AF37]/30 text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase rounded-md z-10">
                     {item.category}
                   </span>
-                </div>
 
-                <div className="p-6">
-                  <h3 className="font-display text-xl text-white tracking-wide mb-2 group-hover:text-[#D4AF37] transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-white/60 line-clamp-2 leading-relaxed">
-                    {item.description}
-                  </p>
+                  {/* Caption slide up */}
+                  <div className="absolute bottom-6 left-6 right-6 transform group-hover:-translate-y-1 transition-transform duration-300 z-10">
+                    <span className="text-[#D4AF37] text-[10px] font-bold tracking-widest uppercase block mb-1">
+                      {item.size}
+                    </span>
+                    <h3 className="font-display text-xl text-[#F5F5F0] tracking-wide mb-1 group-hover:text-[#D4AF37] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-white/60 line-clamp-2 leading-relaxed font-light">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
 
-        {/* ENHANCED LIGHTBOX MODAL WITH PREV/NEXT ARROWS */}
+        {/* ENHANCED LIGHTBOX MODAL */}
         <AnimatePresence>
           {currentItem && (
             <motion.div
@@ -208,7 +235,6 @@ export const Portfolio: React.FC = () => {
               onClick={() => setSelectedIndex(null)}
               className="fixed inset-0 z-50 bg-[#050508]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 select-none"
             >
-              {/* Previous Arrow */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -220,7 +246,6 @@ export const Portfolio: React.FC = () => {
                 <ChevronLeft size={24} />
               </button>
 
-              {/* Next Arrow */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -232,7 +257,6 @@ export const Portfolio: React.FC = () => {
                 <ChevronRight size={24} />
               </button>
 
-              {/* Modal Card */}
               <motion.div
                 key={currentItem.id}
                 initial={{ scale: 0.9, y: 20 }}
@@ -259,14 +283,14 @@ export const Portfolio: React.FC = () => {
                     <span className="text-[#D4AF37] text-xs font-bold tracking-widest uppercase">
                       {currentItem.category} • {currentItem.size}
                     </span>
-                    <span className="text-xs text-white/40">
+                    <span className="text-xs text-white/40 font-mono">
                       {selectedIndex! + 1} / {filteredItems.length}
                     </span>
                   </div>
-                  <h2 className="font-display text-2xl sm:text-3xl text-white mb-3">
+                  <h2 className="font-display text-2xl sm:text-4xl text-[#F5F5F0] mb-3">
                     {currentItem.title}
                   </h2>
-                  <p className="text-sm text-white/70 leading-relaxed mb-6">
+                  <p className="text-sm text-white/70 leading-relaxed mb-6 font-light">
                     {currentItem.description}
                   </p>
 
@@ -274,7 +298,7 @@ export const Portfolio: React.FC = () => {
                     href={`https://wa.me/918102578635?text=Hi%20Vishal!%20I%20saw%20your%20portfolio%20tattoo%20"${encodeURIComponent(currentItem.title)}"%20and%20want%20to%20book%20a%20similar%20session.`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center space-x-2 px-6 py-3 bg-[#D4AF37] text-[#050508] font-bold text-xs tracking-widest uppercase rounded-lg hover:bg-[#e0bc43] transition-colors"
+                    className="inline-flex items-center space-x-2 px-6 py-3.5 bg-[#D4AF37] text-[#050508] font-bold text-xs tracking-widest uppercase rounded-xl hover:bg-[#e0bc43] transition-colors"
                   >
                     <span>Request Similar Artwork</span>
                     <ExternalLink size={14} />
